@@ -1,0 +1,286 @@
+/* Reset & Global */
+body {
+    margin: 0;
+    padding: 0;
+    background: #010c10;
+    font-family: 'Share Tech Mono', monospace;
+    overflow: hidden;
+    touch-action: manipulation;
+    color: #00ffcc;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    font-size: 12px;
+    color: #00ffcc55;
+    text-align: center;
+    width: 100%;
+    z-index: 10;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.visible {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.glow {
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffaa;
+}
+
+/* Game Container */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* HUD Display */
+#hud {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+    font-size: 1.2rem;
+    z-index: 5;
+    color: #00ffcc;
+}
+
+/* Canvas */
+#gameCanvas {
+    background: transparent;
+    border: 2px solid #005555;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    z-index: 2;
+    box-shadow: 0 0 12px #00ffcc44;
+}
+
+/* Input Box */
+.input-container {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    z-index: 5;
+}
+
+#typedWord {
+    padding: 12px;
+    font-size: 18px;
+    width: 80%;
+    max-width: 500px;
+    border: 2px solid #00ffcc88;
+    border-radius: 5px;
+    background: rgba(0, 30, 30, 0.7);
+    color: #00ffcc;
+    transition: 0.3s;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+#typedWord:focus {
+    outline: none;
+    border-color: #00ffcc;
+    box-shadow: 0 0 10px #00ffcc99;
+}
+
+/* Virtual Keyboard */
+#virtualKeyboard {
+    display: none;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#virtualKeyboard button {
+    padding: 8px;
+    font-size: 16px;
+    background: #00aa88;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+#virtualKeyboard button:hover {
+    background: #00ddaa;
+    transform: scale(1.05);
+}
+
+/* Level Up Flash */
+#levelUpFlash {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: #00ffcc;
+    font-weight: bold;
+    display: none;
+    z-index: 10;
+    pointer-events: none;
+    animation: flash 1s ease-in-out;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+@keyframes flash {
+    0% { opacity: 0; transform: scale(0.8) translate(-50%, -50%); }
+    50% { opacity: 1; transform: scale(1.2) translate(-50%, -50%); }
+    100% { opacity: 0; transform: scale(1) translate(-50%, -50%); }
+}
+
+/* Start & Game Over Screens */
+#startScreen,
+#gameOverScreen {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, #010c10, #000000);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    font-family: 'Share Tech Mono', monospace;
+    color: #00ffcc;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+#startScreen h1,
+#gameOverScreen h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+#startScreen p,
+#gameOverScreen p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+#startScreen button,
+#gameOverScreen button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #00ffcc;
+    color: #010c10;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ffcc;
+    font-family: 'Share Tech Mono', monospace;
+    margin: 5px;
+}
+
+#startScreen button:hover,
+#gameOverScreen button:hover {
+    background: #00ffaa;
+}
+
+/* Parallax Background */
+#parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 300%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    animation: parallax-move 120s linear infinite;
+    background: 
+        radial-gradient(ellipse at bottom, #000022 0%, #000000 100%),
+        url('https://transparenttextures.com/patterns/stardust.png');
+    background-size: cover;
+    opacity: 0.4;
+}
+
+#parallax-bg::before,
+#parallax-bg::after {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: 0;
+    left: 0;
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: -1;
+}
+
+#parallax-bg::before {
+    background-image: radial-gradient(#00ffccaa 1px, transparent 2px);
+    background-size: 200px 200px;
+    animation: starLayer1 60s linear infinite;
+}
+
+#parallax-bg::after {
+    background-image: radial-gradient(#00ffcc33 1px, transparent 2px);
+    background-size: 400px 400px;
+    animation: starLayer2 120s linear infinite;
+}
+
+@keyframes parallax-move {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-500px, -1000px); }
+}
+
+@keyframes starLayer1 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-1000px, -1000px); }
+}
+
+@keyframes starLayer2 {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-300px, -600px); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+    }
+
+    #virtualKeyboard {
+        display: grid;
+    }
+
+    #typedWord {
+        width: 90%;
+        font-size: 20px;
+    }
+
+    #hud {
+        flex-direction: column;
+        align-items: center;
+        font-size: 1rem;
+    }
+
+    #startScreen h1,
+    #gameOverScreen h1 {
+        font-size: 2rem;
+    }
+
+    #startScreen button,
+    #gameOverScreen button {
+        font-size: 1rem;
+    }
+}

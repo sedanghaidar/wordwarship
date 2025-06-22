@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Warship</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/war.ico" type="image/x-icon">
+
+</head>
+<body>
+<!-- Start Screen -->
+<div id="startScreen" class="visible">
+    <div class="start-screen-card">
+      <h1 class="title-glow">⚓ Word Warship ⚓</h1>
+      <p class="subtitle">🎯 Serang kapal musuh dengan mengetik kata yang muncul!</p>
+      <button class="start-button" onclick="startGame()">🚀 Mulai Game</button>
+    </div>
+  </div>
+  
+
+  <!-- Game Container -->
+  <div class="game-container hidden">
+    <div id="hud">
+      <div id="scoreDisplay">Score: 0</div>
+      <div id="levelDisplay">Level: 1</div>
+      <div id="livesDisplay">Lives: ❤️❤️❤️</div>
+      <div id="highScoreDisplay">High Score: 0</div>
+    </div>
+
+    <div id="parallax-bg"></div>
+    <canvas id="gameCanvas"></canvas>
+
+    <div class="input-container">
+      <input type="text" id="typedWord" placeholder="Ketik kata di kapal musuh..." autofocus>
+      <div id="virtualKeyboard"></div>
+    </div>
+
+    <div id="levelUpFlash">Level Up!</div>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOverScreen" class="hidden">
+    <h1>⚓ Game Over ⚓</h1>
+    <p>Your Final Score: <strong id="finalScore">0</strong></p>
+    <button onclick="startGame()">Play Again</button>
+    <button onclick="resetHighScore()">Reset High Score</button>
+  </div>
+
+  <footer>Made by Achmed Khidir 🚀</footer>
+
+  <!-- Audio -->
+  <audio id="shootSound" src="assets/laser.wav"></audio>
+  <audio id="explosionSound" src="assets/explosion.wav"></audio>
+  <audio id="bgMusic" src="assets/bg_music.mp3" loop></audio>
+
+  <!-- Scripts -->
+  <script src="game.js"></script>
+</body>
+</html>
